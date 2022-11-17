@@ -37,12 +37,21 @@ class NeoPopButtonPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     // paint the right depth area
     if (right != Colors.transparent) {
+      final firstControlPoint = Offset(size.width, 0.0);
+      final firstEndPoint = Offset(size.width, 0.0);
+      final secondControlPoint = Offset(depth, 0.0);
+      final secondEndPoint = Offset(size.width, size.height);
+
       canvas.drawPath(
         Path()
           ..moveTo(size.width, 0)
           ..lineTo(size.width + depth, depth)
           ..lineTo(size.width + depth, size.height + depth)
-          ..lineTo(size.width, size.height),
+          ..lineTo(size.width, size.height)
+          ..quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+              firstEndPoint.dx, firstEndPoint.dy)
+          ..quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+              secondEndPoint.dx, secondEndPoint.dy),
         Paint()
           ..style = PaintingStyle.fill
           ..color = right
@@ -67,12 +76,20 @@ class NeoPopButtonPainter extends CustomPainter {
 
     // paint the bottom depth area
     if (bottom != Colors.transparent) {
+      final firstControlPoint = Offset(0.0 + depth, 0.0 + 8);
+      final firstEndPoint = Offset(size.height, 0);
+      final secondControlPoint = Offset(depth, 0.0 + 8);
+      final secondEndPoint = Offset(size.height, 0.0);
       canvas.drawPath(
         Path()
           ..moveTo(size.width, size.height)
           ..lineTo(size.width + depth, size.height + depth)
           ..lineTo(0 + depth, size.height + depth)
-          ..lineTo(0, size.height),
+          ..lineTo(0, size.height)
+          ..quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+              firstEndPoint.dx, firstEndPoint.dy)
+          ..quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+              secondEndPoint.dx, secondEndPoint.dy),
         Paint()
           ..style = PaintingStyle.fill
           ..color = bottom

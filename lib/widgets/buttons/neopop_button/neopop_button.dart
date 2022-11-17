@@ -9,10 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:neopop/utils/color_utils.dart';
 import 'package:neopop/utils/constants.dart';
 
-part 'neopop_button_utils.dart';
 part 'neopop_button_clippers.dart';
-part 'neopop_button_translator.dart';
 part 'neopop_button_painter.dart';
+part 'neopop_button_translator.dart';
+part 'neopop_button_utils.dart';
 
 /// A neopop design button.
 ///
@@ -227,7 +227,10 @@ class _NeoPopButtonState extends State<NeoPopButton>
         getRightColor(),
       ),
       child: Container(
-        decoration: BoxDecoration(color: ctaColor, border: widget.border),
+        decoration: BoxDecoration(
+            color: ctaColor,
+            border: widget.border,
+            borderRadius: BorderRadius.circular(8)),
         child: widget.child,
       ),
     );
